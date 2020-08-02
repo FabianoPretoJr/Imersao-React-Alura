@@ -7,29 +7,20 @@ import useForm from '../../../components/hooks/useForm';
 
 function CadastroCategoria() {
   const valoresIniciais = {
-    titulo: '',
+    nome: '',
     descricao: '',
     cor: '',
   };
 
+  const { handleChange, values, clearForm } = useForm(valoresIniciais);
+
   const [categorias, setCategorias] = useState([]);
-
-  const { HandleChange, values, clearForm } = useForm(valoresIniciais);
-
-  function handleSubmit(infosDoEvento) {
-    infosDoEvento.preventDefault();
-    setCategorias([
-      ...categorias,
-      values,
-    ]);
-
-    clearForm();
-  }
 
   useEffect(() => {
     const URL_TOP = window.location.hostname.includes('localhost')
       ? 'http://localhost:8080/categorias'
-      : 'https://fabianflix.herokuapp.com/categorias';
+      : 'https://devsoutinhoflix.herokuapp.com/categorias';
+    // E a ju ama variáveis
     fetch(URL_TOP)
       .then(async (respostaDoServidor) => {
         const resposta = await respostaDoServidor.json();
@@ -37,23 +28,49 @@ function CadastroCategoria() {
           ...resposta,
         ]);
       });
+
+    // setTimeout(() => {
+    //   setCategorias([
+    //     ...categorias,
+    //     {
+    //       id: 1,
+    //       nome: 'Front End',
+    //       descricao: 'Uma categoria bacanudassa',
+    //       cor: '#cbd1ff',
+    //     },
+    //     {
+    //       id: 2,
+    //       nome: 'Back End',
+    //       descricao: 'Outra categoria bacanudassa',
+    //       cor: '#cbd1ff',
+    //     },
+    //   ]);
+    // }, 4 * 1000);
   }, []);
 
   return (
     <PageDefault>
       <h1>
         Cadastro de Categoria:
-        {values.titulo}
+        {values.nome}
       </h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={function handleSubmit(infosDoEvento) {
+        infosDoEvento.preventDefault();
+        setCategorias([
+          ...categorias,
+          values,
+        ]);
+
+        clearForm();
+      }}
+      >
 
         <FormField
           label="Nome da Categoria"
-          type="text"
-          name="titulo"
-          value={values.titulo}
-          onChange={HandleChange}
+          name="nome"
+          value={values.nome}
+          onChange={handleChange}
         />
 
         <FormField
@@ -61,7 +78,7 @@ function CadastroCategoria() {
           type="textarea"
           name="descricao"
           value={values.descricao}
-          onChange={HandleChange}
+          onChange={handleChange}
         />
 
         <FormField
@@ -69,7 +86,7 @@ function CadastroCategoria() {
           type="color"
           name="cor"
           value={values.cor}
-          onChange={HandleChange}
+          onChange={handleChange}
         />
 
         <Button>
@@ -79,6 +96,7 @@ function CadastroCategoria() {
 
       {categorias.length === 0 && (
         <div>
+          {/* Cargando... */}
           Loading...
         </div>
       )}
