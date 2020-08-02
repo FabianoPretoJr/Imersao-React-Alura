@@ -43,6 +43,11 @@
     }
   ],
   "videos": [
-    
+       {
+      "titulo": "Figma",
+      "url": "https://www.youtube.com/watch?v=vg-INqhKD5c",
+      "categoriaId": 3,
+      "id": 29
+    }
   ]
 }
