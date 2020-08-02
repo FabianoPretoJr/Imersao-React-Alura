@@ -43,7 +43,6 @@
     }
   ],
   "videos": [
-<<<<<<< HEAD
     {
       "id": 1,
       "categoriaId": 1,
@@ -227,15 +226,6 @@
       "url": "https://www.youtube.com/watch?v=vg-INqhKD5c&t=456s",
       "categoriaId": 2,
       "id": 28
-    },
-    {
-=======
-       {
->>>>>>> f546a2ef26168ba55f2b4d63aa7670b272764b2f
-      "titulo": "Figma",
-      "url": "https://www.youtube.com/watch?v=vg-INqhKD5c",
-      "categoriaId": 3,
-      "id": 29
     }
   ]
 }
